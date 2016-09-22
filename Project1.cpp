@@ -7,8 +7,14 @@
 //
 
 #include <iostream>
+#include <math.h>
 using namespace std;
 
+/* Equ1: f(1) = 1
+         f(2) = 1
+         f(n) = f(n-1)+f(n-2)
+   Sum:  S(n) = f(1)+f(2)+...+f(n)
+ */
 int Equ1(int n){
     if (n == 1) {
         return 1;
@@ -19,7 +25,19 @@ int Equ1(int n){
     else return (Equ1(n-1) + Equ1(n-2));
 }
 
-int Equ1_withoutRecusrion(int n){
+int recursiveSum(int n){
+    cout << "n = " << n << endl;
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+        int fn = Equ1(i);
+        cout << "f(" << i << ") = " << fn << endl;
+        sum += fn;
+    }
+    cout << "S(n) = " << sum << endl;
+    return sum;
+}
+
+int nonRecursiveSum(int n){
     cout << "n = " << n << endl;
     cout << "f(1) = " << 1 << endl;
     cout << "f(2) = " << 1 << endl;
@@ -36,21 +54,30 @@ int Equ1_withoutRecusrion(int n){
     return sum;
 }
 
-
-int recursiveSum(int n){
-    int sum = 0;
-    for (int i = 1; i <= n; i++) {
-        sum += Equ1(i);
+int GrimaldiSum(int n){
+    cout << "n = " << n << endl;
+    double sum = 0;
+    for (int i = 1; i <= n; i++){
+        double gn = (1.0/sqrt(5.0))*(pow(((1.0+sqrt(5))/2.0), i)-pow(((1.0-sqrt(5))/2.0), i));
+        cout << "f(" << i << ") = " << gn << endl;
+        sum += gn;
     }
+    cout << "S(n) = " << sum << endl;
     return sum;
 }
 
+void println(){
+    cout << endl;
+}
 int main(int argc, const char * argv[]) {
-    /* Equ1: f(1) = 1
-             f(2) = 1
-             f(n) = f(n-1)+f(n-2)
-       Sum:  S(n) = f(0)+f(1)+...+f(n)
-     */
-    Equ1_withoutRecusrion(4);
+    int n = 10;
+    cout << "Task 1." << endl;
+    recursiveSum(n);
+    println();
+    cout << "Task 2." << endl;
+    nonRecursiveSum(n);
+    println();
+    cout << "Task 3." << endl;
+    GrimaldiSum(n);
     return 0;
 }
