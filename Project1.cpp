@@ -220,11 +220,13 @@ int main(int argc, const char * argv[]) {
             default: cout << "Invalid choice. Exiting..." << endl;
                 break;
         }
-        cout << "...continue (y/n)? ";
-        char response;
-        cin >> response;
-        if (response == 'n') exit = true;
-        cout << "Exiting..." << endl;
+        if (!exit) {
+            cout << "...continue (y/n)? ";
+            char response;
+            cin >> response;
+            if (response == 'n') exit = true;
+            cout << "Exiting..." << endl;
+        }
     }
     return 0;
 }
