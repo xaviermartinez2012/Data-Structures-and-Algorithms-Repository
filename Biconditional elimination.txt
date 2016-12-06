@@ -1,0 +1,1 @@
+Biconditional elimination is the name of two valid rules of inference of propositional logic.

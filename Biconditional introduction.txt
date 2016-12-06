@@ -1,0 +1,1 @@
+In propositional logic, biconditional introduction[1][2][3] is a valid rule of inference. It allows for one to infer a biconditional from two conditional statements. The rule makes it possible to introduce a biconditional statement into a logical proof.

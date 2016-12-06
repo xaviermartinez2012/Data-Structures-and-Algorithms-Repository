@@ -1,0 +1,1 @@
+n logic, a strict conditional is a conditional governed by a modal operator, that is, a logical connective of modal logic. It is logically equivalent to the material conditional of classical logic, combined with the necessity operator from modal logic.
