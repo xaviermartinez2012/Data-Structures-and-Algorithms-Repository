@@ -172,12 +172,12 @@ void insert(node *table, int hash, string key, string value)
 }
 
 // Search for a key in a hash table
-int search(node * table, string key){
+int search(node * table, string key, int tableSize){
     if (key.size() > 25)
     {
         char keyArr[key.size()];
         largeKey(key, keyArr);
-        unsigned long long hashx = hx(keyArr, key.size(), 51);
+        unsigned long long hashx = hx(keyArr, key.size(), tableSize);
         if (table[hashx].key == key)
         {
             cout << table[hashx].value << endl;
@@ -217,7 +217,7 @@ int search(node * table, string key){
     {
         char keyArr[25];
         smallKey(key, keyArr);
-        unsigned long long hashx = hx(keyArr, 25, 51);
+        unsigned long long hashx = hx(keyArr, 25, tableSize);
         if (table[hashx].key == key)
         {
             cout << table[hashx].value << endl;
@@ -255,10 +255,10 @@ int search(node * table, string key){
 }
 
 // Delete a key from the table
-void del(node *table, string key){
-    int finder = search(table, key);
+void del(node *table, string key, int tableSize){
+    int finder = search(table, key, tableSize);
     if (finder == -1){
-        cout << key << " not int the table." << endl;
+        cout << key << " is not in the table." << endl;
     }
     else
     {
@@ -309,8 +309,8 @@ int main()
     string wd = "/Users/xaviermartinez/Documents/CECS 328 Projects/Data Structures and Algorithms Projects/Data Structures and Algorithms Projects/Data-Structures-and-Algorithms-Repository/";
     
     // Implementing the hash data structure
-    node table[51];
-    for (int i = 0; i < 51; i++)
+    node table[53];
+    for (int i = 0; i < 53; i++)
     {
         table[i].key = "/";
         table[i].value = "/";
@@ -343,8 +343,8 @@ int main()
             {
                 char keyArr[key.size()];
                 largeKey(key, keyArr);
-                unsigned long long hashx = hx(keyArr, key.size(), 301);
-                unsigned long long hashy = hy(keyArr, key.size(), 301);
+                unsigned long long hashx = hx(keyArr, key.size(), 307);
+                unsigned long long hashy = hy(keyArr, key.size(), 307);
                 divisionMethodkeyues[pos] = hashx;
                 multiplicationMethodkeyues[pos] = hashy;
             }
@@ -352,8 +352,8 @@ int main()
             {
                 char keyArr[25];
                 smallKey(key, keyArr);
-                unsigned long long hashx = hx(keyArr, 25, 301);
-                unsigned long long hashy = hy(keyArr, 25, 301);
+                unsigned long long hashx = hx(keyArr, 25, 307);
+                unsigned long long hashy = hy(keyArr, 25, 307);
                 divisionMethodkeyues[pos] = hashx;
                 multiplicationMethodkeyues[pos] = hashy;
             }
@@ -409,14 +409,14 @@ int main()
             {
                 char keyArr[tmp.size()];
                 largeKey(tmp, keyArr);
-                unsigned long long hashx = hx(keyArr, tmp.size(), 51);
+                unsigned long long hashx = hx(keyArr, tmp.size(), 53);
                 insert(table, hashx, tmp, value);
             }
             else
             {
                 char keyArr[25];
                 smallKey(tmp, keyArr);
-                unsigned long long hashx = hx(keyArr, 25, 51);
+                unsigned long long hashx = hx(keyArr, 25, 53);
                 insert(table, hashx, tmp, value);
             }
             // Close the summary reader
@@ -424,7 +424,7 @@ int main()
         }
     }
     // Display the final table
-    displayTable(table, 51);
+    displayTable(table, 53);
     // Close the wiki titles reader
     wikileaks.close();
     
@@ -448,7 +448,7 @@ int main()
             string response = "";
             cout << "Enter a title: ";
             getline(cin, response);
-            search(table, response);
+            search(table, response, 53);
         }
         else if (choice == 2){
             string title = "";
@@ -461,24 +461,24 @@ int main()
             {
                 char keyArr[title.size()];
                 largeKey(title, keyArr);
-                unsigned long long hashx = hx(keyArr, title.size(), 51);
+                unsigned long long hashx = hx(keyArr, title.size(), 53);
                 insert(table, hashx, title, summary);
             }
             else
             {
                 char keyArr[25];
                 smallKey(title, keyArr);
-                unsigned long long hashx = hx(keyArr, 25, 51);
+                unsigned long long hashx = hx(keyArr, 25, 53);
                 insert(table, hashx, title, summary);
             }
-            displayTable(table, 51);
+            displayTable(table, 53);
         }
         else if(choice == 3){
             string title = "";
             cout << "Enter the name of the title: ";
             getline(cin, title);
-            del(table, title);
-            displayTable(table, 51);
+            del(table, title, 53);
+            displayTable(table, 53);
         }
     }
     return 0;
