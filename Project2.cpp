@@ -37,6 +37,7 @@ void largeKey(string key, char *newKey)
     }
 }
 
+
 // Division Method
 unsigned long long int hx(char *key, int size, int tableSize)
 {
@@ -339,6 +340,7 @@ int main()
         while (getline(wikiTitles, key))
         {
             // Determine whether or not to add padding
+            // Perform performance tests on both multiplication and division hashing methods
             if (key.size() > 25)
             {
                 char keyArr[key.size()];
@@ -425,6 +427,7 @@ int main()
     }
     // Display the final table
     displayTable(table, 53);
+    
     // Close the wiki titles reader
     wikileaks.close();
     
@@ -443,6 +446,7 @@ int main()
         if (choice == 4) {
             exit = true;
         }
+        // Search
         else if (choice == 1){
             // Obtain a title to search
             string response = "";
@@ -450,13 +454,17 @@ int main()
             getline(cin, response);
             search(table, response, 53);
         }
+        // Insert
         else if (choice == 2){
+            // Obtain a title and summary to insert into the table
             string title = "";
             string summary = "";
             cout << "Enter the name of the title: ";
             getline(cin, title);
             cout << "Enter the 1st paragraph summary: ";
             getline(cin, summary);
+            // Determine whether or not to add padding
+            // Insert key value pair into table
             if (title.size() > 25)
             {
                 char keyArr[title.size()];
@@ -473,7 +481,9 @@ int main()
             }
             displayTable(table, 53);
         }
+        // Delete
         else if(choice == 3){
+            // Obtain a title and summary to delete from the table
             string title = "";
             cout << "Enter the name of the title: ";
             getline(cin, title);
